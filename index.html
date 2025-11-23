@@ -1,0 +1,100 @@
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1>Reporte Vías</h1>
+      <p class="tagline">Reporta el estado de las vías, adjunta fotos y vota por prioridades</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Crear reporte</h2>
+      <form id="reportForm">
+        <label>Título
+          <input type="text" id="title" placeholder="Ej: Bache grande en la vía principal" required />
+        </label>
+
+        <label>Descripción
+          <textarea id="description" placeholder="Describe el problema..." rows="4" required></textarea>
+        </label>
+
+        <div class="row">
+          <label class="flex">
+            <span>Ubicación (lat, lng) — opcional</span>
+            <div class="row inputs">
+              <input type="number" id="lat" step="any" placeholder="Latitud" />
+              <input type="number" id="lng" step="any" placeholder="Longitud" />
+              <button type="button" id="useLocation">Usar mi ubicación</button>
+            </div>
+          </label>
+        </div>
+
+        <label>Foto (opcional)
+          <input type="file" id="photo" accept="image/*" />
+          <div id="thumbPreview" class="thumb"></div>
+        </label>
+
+        <div class="row actions">
+          <button type="submit" class="btn primary">Enviar reporte</button>
+          <button type="button" id="clearAll" class="btn danger">Borrar todos (solo demo)</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Reportes</h2>
+
+      <div class="controls">
+        <label>Ordenar por:
+          <select id="sortBy">
+            <option value="votes">Mayor prioridad (votos)</option>
+            <option value="newest">Más recientes</option>
+            <option value="oldest">Más antiguos</option>
+          </select>
+        </label>
+
+        <label>Buscar:
+          <input id="search" placeholder="Título o descripción..." />
+        </label>
+
+        <button id="exportJson" class="btn">Exportar JSON</button>
+      </div>
+
+      <div id="reportsList" class="reportsList"></div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>Prototipo — diseñado para zonas rurales • Guarda & comparte los reportes localmente</small>
+  </footer>
+
+  <template id="reportTemplate">
+    <article class="reportCard">
+      <header>
+        <h3 class="r-title"></h3>
+        <div class="meta">
+          <time class="r-time"></time>
+          <span class="r-loc"></span>
+        </div>
+      </header>
+      <div class="r-body">
+        <p class="r-desc"></p>
+        <div class="r-photo"></div>
+      </div>
+      <footer class="r-footer">
+        <div class="votes">
+          <button class="btn voteBtn">? Votar</button>
+          <span class="r-votes">0</span>
+        </div>
+        <div class="actions">
+          <button class="btn small viewBtn">Ver JSON</button>
+          <button class="btn small deleteBtn">Eliminar</button>
+        </div>
+      </footer>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
